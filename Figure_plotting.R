@@ -76,20 +76,9 @@ mypal = pal_locuszoom()(7)
 p_tabnet<-ggplot(TabNet_hist, aes(x=TabNet_sens_auc)) + 
   geom_histogram(fill=mypal[1], color= "black") +
   theme_minimal(base_size = 14)+
-  #scale_fill_locuszoom(name="Group", labels=c("Control","Case")) +
-  #scale_x_discrete(labels=c("Male", "Female")) +
   labs(x="AUC value", y="Count") + 
   geom_vline(aes(xintercept = 0.908),
-                                              color=mypal[5], linetype="dashed", size=1)
-
-p_tabnet
-p + geom_vline(aes(xintercept = 0.908),
-color=mypal[5], linetype="dashed", size=1)
-
-
-
-
-
+  color=mypal[5], linetype="dashed", size=1)
 
 
 FastAI_hist <- data.frame(FastAI_sens_auc)
@@ -98,18 +87,9 @@ mypal = pal_locuszoom()(7)
 p_fastai<-ggplot(FastAI_hist, aes(x=FastAI_sens_auc)) + 
   geom_histogram(fill=mypal[1], color= "black") +
   theme_minimal(base_size = 14)+
-  #scale_fill_locuszoom(name="Group", labels=c("Control","Case")) +
-  #scale_x_discrete(labels=c("Male", "Female")) +
   labs(x="AUC value", y="Count") + 
   geom_vline(aes(xintercept = 0.879),
              color=mypal[5], linetype="dashed", size=1)
-
-p_fastai
-
-p + geom_vline(aes(xintercept = 0.879),
-               color=mypal[5], linetype="dashed", size=1)
-
-
 
 
 RFI_hist <- data.frame(RF_sens_auc)
@@ -118,16 +98,10 @@ mypal = pal_locuszoom()(7)
 p_rf<-ggplot(RFI_hist, aes(x=RF_sens_auc)) + 
   geom_histogram(fill=mypal[1], color= "black") +
   theme_minimal(base_size = 14)+
-  #scale_fill_locuszoom(name="Group", labels=c("Control","Case")) +
-  #scale_x_discrete(labels=c("Male", "Female")) +
   labs(x="AUC value", y="Count") +
   geom_vline(aes(xintercept = 0.9423747276688453),
-                                              color=mypal[5], linetype="dashed", size=1)
+  color=mypal[5], linetype="dashed", size=1)
 
-p_rf
-
-p + geom_vline(aes(xintercept = 0.9423747276688453),
-               color=mypal[5], linetype="dashed", size=1)
 
 
 ggarrange(p_rf, p_fastai, p_tabnet, labels = c("Random Forest", "FastAI", "TabNet"),
