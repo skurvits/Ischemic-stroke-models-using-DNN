@@ -106,3 +106,27 @@ p_rf<-ggplot(RFI_hist, aes(x=RF_sens_auc)) +
 
 ggarrange(p_rf, p_fastai, p_tabnet, labels = c("Random Forest", "FastAI", "TabNet"),
           common.legend = TRUE, legend = "bottom", nrow=1)
+
+
+
+#Venn diagram of important features shared
+
+rf_names <-c('B.RBC', 'B.RDW.CV_1', 'S.P.CRP', 'B.MCV', 'B.Mono#',
+       'B.Lymph#', 'count_analytes', 'count_na', 'S.P.K', 'U.SG.strip',
+       'eGFR', 'B.RDW.SD', 'B.Hct_1', 'fS.fP.Gluc', 'birth_year', 'S.P.Urea',
+       'B.MPV', 'U.pH.strip', 'B.Hct_2', 'eGFR-CKD-EPI', "ICD-10*")
+
+FastAI_names <- c('ICD10', 'B.Hct_1', 'eGFR-CKD-EPI', 'birth_year', 'U.pH.strip', 'B.MPV',
+                  'B.HbA1c', 'age', 'eGFR', 'B.RDW.SD', 'B.RDW.CV_1', 'U.P', 
+                  'B.IRF', 'U.Prot.strip_2', 'B.Neut#', 'S.P.Bil', 'S.P.Gluc', 'aB.pO2.div.FiO2', 'B.RDW.CV_2' ,'S.P.PTH')
+
+TabNet_names <- c('ICD10', 'B.Neut#', 'B.Hct_2', 'S.P.CA.19.9', 'S.P.fPSA', 'B.MPV', 'B.RDW.SD', 'B.HbA1c', 
+                  'U.pH.strip', 'B.CBC.B.LYMPH', 'U.Prot.strip_2', 'birth_year', 'B.MCH', 'B.Mxd.%',
+                  'B.IG#', 'U.RBC.strio', 'S.P.Prot', 'B.RBC', 'B.Hct_1', 'S.P.GGT')
+
+mypal = pal_locuszoom()(7)
+a <- list(`Random Forest` = rf_names,
+          `FastAI` = FastAI_names,
+          `TabNet` = TabNet_names)
+
+ggvenn(a, c("Random Forest", "FastAI", "TabNet"), fill_color = mypal[2:7], show_elements = FALSE,   text_size = 3, label_sep = "\n") 
